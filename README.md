@@ -46,11 +46,15 @@ Compares two strings, `a` and `b`, lexicographically. Returns `0` if `a == b`; `
 
 ### `randstr(len)`
 
-Generate random string with length `len`.
+Generate random string with length `len` using `chars`. Expects `len >= 0`.
+
+**NOTE:** The string's last character will never be either the `between.lo` character or the `between.hi` character for `chars` of size greater than two. This is intended so that this string, `a`, may be used as a reference point to generate strings that will be able to sort between `a` and any other string distinct from `a`. For `chars` of size 2, the `between.hi` character will be used.
 
 ### `inject(chars)`
 
 Create instance of `between` using characters from `chars`.
+
+**NOTE:** It's expected that `chars` is at least 2 distinct characters long.
 
 ### `between.lo` and `between.hi`
 

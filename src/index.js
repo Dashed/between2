@@ -31,11 +31,16 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
     exports.inject = inject;
 
     function randstr(l) {
-        // expect l >= 0
+        // expect l >= 0. if l
         let str = '';
-        while(l--) {
-            str += chars[Math.floor(Math.random() * chars.length)];
+        while(l --> 1) {
+            str += chars[Math.floor(Math.random() * charsLength)];
         }
+
+        if(l == 0) {
+            str += chars[Math.floor(Math.random() * (charsLength - 2)) + 1];
+        }
+
         return str;
     }
 
