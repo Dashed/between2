@@ -27,5 +27,9 @@
     "babel": "^5.4.7",
     "chai": "^2.3.0",
     "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "lodash.reduce": "^3.1.2",
+    "to-fast-properties": "^1.0.1"
   }
 }

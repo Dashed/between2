@@ -1,3 +1,5 @@
+const toFastProperties = require('to-fast-properties');
+const reduce = require('lodash.reduce');
 
 function strord(a, b) {
     return (
@@ -10,6 +12,11 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
 
     const chars = _chars.split('').sort().join('');
     const charsLength = chars.length;
+    const lookup = reduce(chars, function(accumulator, char, idx) {
+        accumulator[char] = idx;
+        return accumulator;
+    }, {});
+    toFastProperties(lookup);
 
     let exports = between;
 
@@ -52,12 +59,10 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
         const guard = a.length + b.length;
 
         while (i <= guard) {
-            // TODO: build lookup table
-            let _a = chars.indexOf(a[i]);
-            let _b = chars.indexOf(b[i]);
+            let _a = lookup[a[i]] || 0;
+            let _b = lookup[b[i]];
 
-            if(_a == -1) _a = 0;
-            if(_b == -1) _b = charsLength - 1;
+            if(_b == void 0) _b = charsLength - 1;
 
             i++;
 
