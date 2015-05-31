@@ -63,6 +63,9 @@ as positions for items, because it will not be possible to insert items after
 or before them. These values represent the space infront of the first item, and
 the space between the last item.
 
+## Credit
+
+Cheers to [@dominictarr](https://github.com/dominictarr) who created the original [`between`](https://github.com/dominictarr/between) module.
 
 ## License
 
