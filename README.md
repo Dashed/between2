@@ -40,9 +40,9 @@ Generate string that sorts between `between.lo` and `a`.
 
 Trim `between.lo` characters to the right of `a`.
 
-### `strord(a)`
+### `strord(a, b)`
 
-TBA
+Compares two strings, `a` and `b`, lexicographically. Returns `0` if `a == b`; `-1` if `a` is lexicographically less than `b`; `1` if `a` is lexicographically greater than `b`.
 
 ### `randstr(len)`
 
