@@ -53,7 +53,7 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
         return s.substring(0, end);
     }
 
-    function between(a, b, bypassCheck = false) {
+    function between(a = between.lo, b = between.hi, bypassCheck = false) {
         let betweenString = '', i = 0;
 
         if(!bypassCheck && strord(trim(a), trim(b)) >= 0) {
@@ -62,6 +62,7 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
 
         // invariant: a < b
         const guard = a.length + b.length;
+        const guard2 = Math.max(a.length, b.length);
 
         while (i <= guard) {
             let _a = lookup[a[i]] || 0;
@@ -69,15 +70,15 @@ function inject(_chars = '!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnop
 
             if(_b == void 0) _b = charsLength - 1;
 
-            i++;
-
-            const c = chars[(_a + 1) < _b ? Math.round((_a+_b)/2) : _a];
+            const c = chars[((_a + 1 < _b) || i >= guard2) ? Math.round((_a+_b)/2) : _a];
 
             betweenString += c;
 
-            if(a < betweenString && betweenString < b && c != exports.lo) {
+            if((a < betweenString) && (betweenString < b) && c != exports.lo) {
                 return betweenString;
             }
+
+            i++;
         }
 
         throw Error(`Unable to produce proper string that can be sorted between '${a}' and '${b}'. Generated: ${betweenString}`);
