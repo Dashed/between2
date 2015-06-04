@@ -1,6 +1,6 @@
 {
   "name": "between2",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "generate arbitary strings that sort between two strings. fork of between.",
   "main": "modules/index.js",
   "scripts": {
